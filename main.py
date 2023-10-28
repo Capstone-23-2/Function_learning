@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from typing import Optional
 from pydantic import BaseModel
-from response import get_reply
+from common.response import get_reply
 
 
 class Conversation(BaseModel):

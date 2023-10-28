@@ -1,4 +1,4 @@
-from key import palm_api_key
+from common.key import palm_api_key
 import google.generativeai as palm
 import logging
 

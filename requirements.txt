@@ -1,2 +1,2 @@
-"fastapi[all]"
+fastapi[all]
 google-generativeai==0.2.2
