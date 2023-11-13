@@ -18,7 +18,7 @@ def get_reply(user_id, sentence):
 
 def get_palm_result(user_id, sentence):
     palm.configure(api_key=os.getenv('palm_api_key'))
-    prompt = basic_prompt + get_context(user_id)
+    prompt = basic_prompt + get_context(user_id) + '\nResponse: '
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
@@ -48,7 +48,7 @@ def get_context(user_id):
 
 def write_log(user_id, res, speaker):
     with open(get_log_path(user_id), 'a') as f:
-        f.write(speaker+': ' + res + '\n')
+        f.write(res + '\n')
 
 
 def start_conversation(user_id, chr_name):
