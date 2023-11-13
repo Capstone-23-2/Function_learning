@@ -52,17 +52,18 @@ def write_log(user_id, res, speaker):
 
 
 def start_conversation(user_id, chr_name):
-    if get_log_path(user_id) in os.listdir('logs'):
+    if user_id+'.log' in os.listdir('logs'):
         end_conversation(user_id)
     sentence = "Hi. I'm "+chr_name + ". Nice to meet you!! What's your name?"
-    write_log(user_id, sentence, 'Teacher')
+    #write_log(user_id, sentence, 'Teacher')
+    write_log(user_id, '', 'Teacher')
     return
 
 
 def end_conversation(user_id):
-    os.rename('logs/'+str(user_id)+'.log', 'logs/' +
-              str(user_id)+'_'+datetime.now()+'.log')
+    os.rename(get_log_path(user_id), 'logs/' +
+              user_id+'_'+str(datetime.now())+'.log')
 
 
 def get_log_path(user_id):
-    return 'logs/'+str(user_id)+'.log'
+    return 'logs/'+user_id+'.log'

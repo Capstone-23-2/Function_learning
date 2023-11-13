@@ -19,6 +19,6 @@ def test():
 
 @app.post("/conversation")
 def get_response(conversation: Conversation):
-    res = get_reply(user_id=conversation.user_id,
+    res = get_reply(user_id=str(conversation.user_id),
                     sentence=conversation.sentence)
     return {"text": res}
