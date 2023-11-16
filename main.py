@@ -16,6 +16,11 @@ class Conversation(BaseModel):
 
 app = FastAPI()
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s-%(levelname)s-%(message)s"
+)
+
 
 @app.get("/test")
 def test():
@@ -24,7 +29,7 @@ def test():
 
 @app.post("/conversation")
 def get_response(conversation: Conversation):
-    logging.info('Request content: ' + conversation)
+    logging.debug('Request content: ' + str(conversation))
     res = get_reply(user_id=str(conversation.user_id),
                     sentence=conversation.sentence, character_name=conversation.character_name)
     return {"text": res}
