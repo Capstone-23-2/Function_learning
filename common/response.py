@@ -36,6 +36,7 @@ def get_palm_result(user_id, sentence, character_name):
             print(filter['reason'])
         res = 'I can\'t understand. Please try again.'
     write_log(user_id, res)
+    logging.debug('response: ' + res)
     return res
 
 
