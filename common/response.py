@@ -55,8 +55,8 @@ def start_conversation(user_id, character_name):
     if user_id+'.log' in os.listdir('logs'):
         end_conversation(user_id)
     sentence = "Hi. I'm "+character_name + ". Nice to meet you!! What's your name?"
-    write_log(user_id, sentence)
-    #write_log(user_id, '')
+    #write_log(user_id, sentence)
+    write_log(user_id, '')
     return
 
 
