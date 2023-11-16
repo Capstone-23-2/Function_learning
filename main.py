@@ -11,14 +11,14 @@ class Conversation(BaseModel):
     character_name: str
 
     def __str__(self):
-        return 'user_id:%d sentence:%s character_name:%s' % (self.user_id, self.sentence, self.character_name)
+        return 'user_id:%d\n sentence:%s\n character_name:%s' % (self.user_id, self.sentence, self.character_name)
 
 
 app = FastAPI()
 
 logging.basicConfig(
     level=logging.DEBUG,
-    format="%(asctime)s-%(levelname)s-%(message)s"
+    format="%(levelname)s:    %(asctime)s - %(message)s"
 )
 
 
@@ -29,7 +29,7 @@ def test():
 
 @app.post("/conversation")
 def get_response(conversation: Conversation):
-    logging.debug('Request content: ' + str(conversation))
+    logging.debug('Request content\n' + str(conversation))
     res = get_reply(user_id=str(conversation.user_id),
                     sentence=conversation.sentence, character_name=conversation.character_name)
     return {"text": res}
