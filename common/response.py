@@ -18,7 +18,7 @@ def get_reply(user_id, sentence, character_name):
 def get_palm_result(user_id, sentence, character_name):
     palm.configure(api_key=os.getenv('palm_api_key'))
     prompt = get_prompt(character_name)
-    prompt += get_context(user_id) + '\nResponse: '
+    prompt += get_context(user_id) + '\n\nResponse: '
     completion = palm.generate_text(
         model=model,
         prompt=prompt,

@@ -11,7 +11,7 @@ class Conversation(BaseModel):
     character_name: str
 
     def __str__(self):
-        return 'user_id:%d\n sentence:%s\n character_name:%s' % (self.user_id, self.sentence, self.character_name)
+        return '{\n\tuser_id:%d\n\tsentence:%s\n\tcharacter_name:%s\n}' % (self.user_id, self.sentence, self.character_name)
 
 
 app = FastAPI()

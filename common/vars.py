@@ -12,7 +12,7 @@ examples = [
     "Hi. My name is Bob.",
     "Hello Bob. What did you had for breakfast this morning?",
 	"Yes. I had chicken salad.",
-    "Oh. DId you enjoy it?"
+    "Oh. Did you enjoy it?"
   ],
   [
     "Hi. My name is Tony.",
