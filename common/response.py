@@ -22,8 +22,11 @@ def get_palm_result(user_id, sentence, character_name):
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
+        candidate_count=1,
+        top_k=60,
+        top_p=0.8,
         temperature=.1,
-        max_output_tokens=100,
+        max_output_tokens=1000,
         safety_settings=[{"category": "HARM_CATEGORY_DEROGATORY", "threshold": 4}, {"category": "HARM_CATEGORY_TOXICITY", "threshold": 4}, {"category": "HARM_CATEGORY_VIOLENCE", "threshold": 4}, {
             "category": "HARM_CATEGORY_SEXUAL", "threshold": 4}, {"category": "HARM_CATEGORY_MEDICAL", "threshold": 4}, {"category": "HARM_CATEGORY_DANGEROUS", "threshold": 4}],
 
