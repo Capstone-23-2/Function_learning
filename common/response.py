@@ -6,6 +6,8 @@ import os
 
 
 def get_reply(user_id, sentence, character_name):
+    if not sentence:
+        return 'I can\'t understand. Can you say one more time?'
     if sentence[:7] == '<start>':
         start_conversation(user_id, character_name)
         return 'Success'
