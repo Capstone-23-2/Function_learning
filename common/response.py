@@ -1,4 +1,4 @@
-from common.vars import model, prompt_word, prompt_food
+from common.vars import model, prompt_word, prompt_food, prompt_dream
 from datetime import datetime
 import google.generativeai as palm
 import logging
@@ -18,22 +18,25 @@ def get_reply(user_id, sentence, character_name):
 
 
 def get_palm_result(user_id, sentence, character_name):
+    context = get_context(user_id)
     palm.configure(api_key=os.getenv('palm_api_key'))
     prompt = get_prompt(character_name)
-    prompt += get_context(user_id) + '\n\nResponse: '
+    prompt += context + '\n\nResponse: '
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
         candidate_count=1,
         top_k=60,
         top_p=0.8,
-        temperature=.1,
+        temperature=.7,
         max_output_tokens=1000,
         safety_settings=[{"category": "HARM_CATEGORY_DEROGATORY", "threshold": 4}, {"category": "HARM_CATEGORY_TOXICITY", "threshold": 4}, {"category": "HARM_CATEGORY_VIOLENCE", "threshold": 4}, {
             "category": "HARM_CATEGORY_SEXUAL", "threshold": 4}, {"category": "HARM_CATEGORY_MEDICAL", "threshold": 4}, {"category": "HARM_CATEGORY_DANGEROUS", "threshold": 4}],
 
     )
     res = completion.result
+    # if character_name == 'Mongmong-e' and len(context) > 4:
+    #     res = check_word_chain(res)
     if res == None:
         logging.error(
             'Following prompt could not generate any response\n'+prompt)
@@ -50,6 +53,11 @@ def get_context(user_id):
         dialogue = f.readlines()
     context = ''.join(dialogue)
     return context
+
+
+def check_word_chain(res):
+
+    return
 
 
 def write_log(user_id, res):
@@ -78,6 +86,8 @@ def get_log_path(user_id):
 def get_prompt(character_name):
     if character_name == 'Hindung-e':
         prompt = prompt_food
-    else:
+    elif character_name == 'Mongmong-e':
         prompt = prompt_word
+    else:
+        prompt = prompt_dream
     return prompt
