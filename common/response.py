@@ -26,8 +26,8 @@ def get_palm_result(user_id, sentence, character_name):
         model=model,
         prompt=prompt,
         candidate_count=1,
-        top_k=60,
-        top_p=0.8,
+        top_k=40,
+        top_p=0.95,
         temperature=.1,
         max_output_tokens=1000,
         safety_settings=[{"category": "HARM_CATEGORY_DEROGATORY", "threshold": 4}, {"category": "HARM_CATEGORY_TOXICITY", "threshold": 4}, {"category": "HARM_CATEGORY_VIOLENCE", "threshold": 4}, {
